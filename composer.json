@@ -1,6 +1,7 @@
 {
     "name": "albertmorenodev/server-info",
     "description": "Get information of server",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
