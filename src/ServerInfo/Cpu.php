@@ -33,12 +33,7 @@ class Cpu
                 sleep(1);
                 $statData2 = $this->getServerLoadLinuxData();
 
-                if
-                (
-                    (!is_null($statData1)) &&
-                    (!is_null($statData2))
-                )
-                {
+                if ((!is_null($statData1)) && (!is_null($statData2))) {
                     // Get difference
                     $statData2[0] -= $statData1[0];
                     $statData2[1] -= $statData1[1];
@@ -60,12 +55,10 @@ class Cpu
 
     private function getServerLoadLinuxData()
     {
-        if (is_readable("/proc/stat"))
-        {
+        if (is_readable("/proc/stat")) {
             $stats = @file_get_contents("/proc/stat");
 
-            if ($stats !== false)
-            {
+            if ($stats !== false) {
                 // Remove double spaces to make it easier to extract values with explode()
                 $stats = preg_replace("/[[:blank:]]+/", " ", $stats);
 
@@ -74,17 +67,11 @@ class Cpu
                 $stats = explode("\n", $stats);
 
                 // Separate values and find line for main CPU load
-                foreach ($stats as $statLine)
-                {
+                foreach ($stats as $statLine) {
                     $statLineData = explode(" ", trim($statLine));
 
                     // Found!
-                    if
-                    (
-                        (count($statLineData) >= 5) &&
-                        ($statLineData[0] == "cpu")
-                    )
-                    {
+                    if ((count($statLineData) >= 5) && ($statLineData[0] == "cpu")) {
                         return array(
                             $statLineData[1],
                             $statLineData[2],
