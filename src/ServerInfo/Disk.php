@@ -1,5 +1,4 @@
 <?php
-
 namespace ServerInfo;
 
 class Disk
